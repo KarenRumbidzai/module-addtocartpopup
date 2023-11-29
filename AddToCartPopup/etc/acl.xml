@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!--
+/**
+* @author Karen Rumbie
+* @copyright Copyright © Karen Rumbie creatives
+* @package KarenRumbie_AddToCartPopup
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+   <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="KarenRumbie_AddToCartPopup::config_karenrumbie_addtocartpopup" title="Add to cart popup" translate="title" />
+            </resource>
+        </resources>
+    </acl>
+</config>
