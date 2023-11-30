@@ -1,0 +1,67 @@
+<?php
+/**
+     * @author Karen Rumbie
+     * @copyright Copyright © Karen Rumbie creatives
+     * @package KarenRumbie_AddToCartPopup
+     * 
+ */
+
+/**  @var $block \KarenRumbie\AddToCartPopup\Block\AddToCartPopup */
+?>
+
+<?php
+    $_product = $block->getProduct(); 
+    $basUrl = $block->getBaseUrl();
+    $addedToCartTitle = __('Added to Cart:');
+    $image = $block->getImage($_product, 'product_page_image_medium');
+?>
+
+<?php if ($block->enableToCartPopup()): ?>
+    <div id="vectra-addtoModal" class="vectra-detail-page" style="display: none;">
+        <div id="productImg" class="product-image">
+            <img src="<?= $image; ?>" alt="<?= $_product->getName() ?>" />
+        </div>
+        <div class="product-name">
+            <span class="title"><?= $block->escapeHtml($addedToCartTitle) ?></span>
+            <span class="name"><?= $_product->getName() ?></span>
+        </div>
+    </div>
+    <script>
+        require([
+            'jquery', 
+            'Magento_Ui/js/modal/modal'
+            ], function($, modal){
+                var options = {
+                    type: "popup",
+                    responsive: false,
+                    innerScroll: false,
+                    modalClass: 'vectra-addtoPopup',
+                    clickableOverlay: true,
+                    buttons: [{
+                        text: $.mage.__('Continue Shopping'),
+                        class: "modal btn-secondary",
+                        click: function() {
+                            this.closeModal();
+                        }
+                    },{
+                        text: $.mage.__('View My Cart'),
+                        class: "modal btn-primary",
+                        click: function() {
+                            window.location.replace("<?= $basUrl . 'checkout/cart/'; ?>")
+                        }
+                    }]
+                }
+
+                var popup = modal(options, $('#vectra-addtoModal'));
+                $('.action.tocart').on('click', function() {
+                    if ($('#product_addtocart_form').valid()) {
+                        setTimeout (function () {
+                            $("#vectra-addtoModal").modal("openModal");
+                        }, 1000)
+                    }
+                })
+
+            }
+        );
+    </script>
+<?php endif; ?>

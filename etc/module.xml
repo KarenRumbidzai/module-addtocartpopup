@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<!--
+/**
+* @author Karen Rumbie
+* @copyright Copyright © Karen Rumbie creatives
+* @package KarenRumbie_AddToCartPopup
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+	<module name="KarenRumbie_AddToCartPopup" setup_version="1.0.0"></module>
+      <sequence>
+            <module name="Magento_Catalog"/>
+      </sequence>
+</config>
